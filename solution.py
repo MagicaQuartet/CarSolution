@@ -135,15 +135,19 @@ class MyWindow(QMainWindow):
 
     @pyqtSlot()
     def combo_maker_select(self):
-        self.crawler.maker = self.comboMaker.currentIndex()
+        if self.comboMaker.currentIndex() < 10:
+            self.crawler.carnation = 1
+        else:
+            self.crawler.carnation = 2
+        self.crawler.maker = self.comboMaker.currentText()
 
     @pyqtSlot()
     def combo_price1_select(self):
-        self.crawler.carmoney1 = self.comboPrice1.currentIndex()
+        self.crawler.carmoney1 = self.comboPrice1.currentText()[:-2]
 
     @pyqtSlot()
     def combo_price2_select(self):
-        self.crawler.carmoney2 = self.comboPrice2.currentIndex()
+        self.crawler.carmoney2 = self.comboPrice2.currentText()[:-2]
 
     @pyqtSlot()
     def lineedit_start_select(self):
