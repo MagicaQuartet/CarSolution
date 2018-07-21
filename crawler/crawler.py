@@ -64,7 +64,7 @@ class CarCrawler(object):
                     break
                 time.sleep(1)
                 post.click()
-                time.sleep(1)
+                time.sleep(2)
 
                 infohead = self._driver.find_element_by_id("infohead")
                 carinfo = self._driver.find_element_by_id("carinfo").find_element_by_tag_name("tbody")
@@ -106,7 +106,11 @@ class CarCrawler(object):
         self._driver = webdriver.Firefox(executable_path="C:/Users/m2ucr/PycharmProjects/CarSolution/driver/geckodriver.exe")
         self._driver.get(self._baseURL)
         time.sleep(1)
-        self._driver.find_element_by_name("image1").click()     # 국산차
+        if self.maker < 10:
+            self._driver.find_element_by_name("image1").click()
+        else:
+            self._driver.find_element_by_name("image2").click()
+            self.maker -= 10
         time.sleep(1)
         self._driver.find_element_by_id("car1_"+str(self.maker)).click()
         time.sleep(1)
